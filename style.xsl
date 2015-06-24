@@ -5,12 +5,12 @@
 	<xsl:template match="/">
 		<html>
 			<head>
-				<title>QUDT1.1 vs DBPedia-ja</title>
+				<title>QUDT1.1 Unit vs DBPedia-ja</title>
 				<link rel="stylesheet" type="text/css" href="style.css" />
 			</head>
 			<body>
 				<div>
-					<h1>QUDT1.1 vs DBPedia-ja</h1>
+					<h1>QUDT1.1 Unit vs DBPedia-ja</h1>
 					<table class="pure-table pure-table-striped">
 						<thead>
 							<tr>
@@ -26,6 +26,28 @@
 							<xsl:apply-templates select="/rdf:RDF/rdf:Description[rdf:type and rdfs:label]" />
 						</tbody>
 					</table>
+
+					<div style="margin:2em;">
+						このページは RDF/XML に XSL スタイルシートを適用することで表示されています。
+						<br />
+						RDF/XML は以下のリソースを集約して作成されています。
+						<ul>
+							<li>
+								<a href="http://qudt.org/1.1/vocab/unit">QUDT 1.1 Ontology - Unit</a>
+								,
+								licensed under
+								<a href="https://creativecommons.org/licenses/by-sa/3.0/us/">CC BY-SA 3.0 US</a>
+							</li>
+							<li>
+								Query result from
+								<a href="http://dbpedia.org/snorql">DBPedia SPARQL Endpoint</a>
+								,
+								licensed under
+								<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>
+							</li>
+						</ul>
+					</div>
+
 				</div>
 			</body>
 		</html>
