@@ -1,0 +1,35 @@
+body {
+	font-family: helvetica, sans-serif;
+	font-size: 9pt;
+}
+
+body>div {
+	margin: 10px;
+}
+
+th {
+	background: gray;
+	color: white;
+	text-align: left;
+}
+
+td {
+	background: #ccc;
+}
+
+tr.closeMatch td {
+	background: #fa0;
+}
+
+tr.exactMatch td {
+	background: #7f7;
+}
+
+td>* {
+	margin: auto 5px;
+}
+
+code {
+	font-size: 11pt;
+	font-family: Consolas, monospace;
+}
