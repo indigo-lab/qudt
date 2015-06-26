@@ -5,12 +5,12 @@
 	<xsl:template match="/">
 		<html>
 			<head>
-				<title>QUDT1.1 Unit vs DBPedia-ja</title>
+				<title>QUDT1.1 Unit vs DBpedia-ja</title>
 				<link rel="stylesheet" type="text/css" href="style.css" />
 			</head>
 			<body>
 				<div>
-					<h1>QUDT1.1 Unit vs DBPedia-ja</h1>
+					<h1>QUDT1.1 Unit vs DBpedia-ja</h1>
 					<table class="pure-table pure-table-striped">
 						<thead>
 							<tr>
@@ -18,8 +18,8 @@
 								<th>QUDT</th>
 								<th>abbr</th>
 								<th>rel</th>
-								<th>DBPedia</th>
-								<th>DBPedia-ja</th>
+								<th>DBpedia</th>
+								<th>DBpedia-ja</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -40,7 +40,7 @@
 							</li>
 							<li>
 								Query result from
-								<a href="http://dbpedia.org/snorql">DBPedia SPARQL Endpoint</a>
+								<a href="http://dbpedia.org/snorql">DBpedia SPARQL Endpoint</a>
 								,
 								licensed under
 								<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>
