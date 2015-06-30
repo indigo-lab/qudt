@@ -1,4 +1,69 @@
-<a href="unit11.xml">unit11.xml</a>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>QUDT1.1 Unit vs DBpedia-ja</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
 <script>
-	location.href = "unit11.xml";
+	function loadXMLDoc(filename) {
+		if (window.ActiveXObject) {
+			xhttp = new ActiveXObject("Msxml2.XMLHTTP");
+		} else {
+			xhttp = new XMLHttpRequest();
+		}
+		xhttp.open("GET", filename, false);
+		try {
+			xhttp.responseType = "msxml-document"
+		} catch (err) {
+		} // Helping IE11
+		xhttp.send("");
+		return xhttp.responseXML;
+	}
+
+	$(function() {
+		var xml = loadXMLDoc("unit11.xml");
+		$("select").on("change", function() {
+			$("#contents").html("loading...");
+			var xsl = loadXMLDoc($(this).val());
+			if (window.ActiveXObject || xhttp.responseType == "msxml-document") {
+				ex = xml.transformNode(xsl);
+				$("#contents").empty().html(ex);
+			}
+			// code for Chrome, Firefox, Opera, etc.
+			else if (document.implementation && document.implementation.createDocument) {
+				xsltProcessor = new XSLTProcessor();
+				xsltProcessor.importStylesheet(xsl);
+				resultDocument = xsltProcessor.transformToFragment(xml, document);
+				$("#contents").empty();
+				$("#contents")[0].appendChild(resultDocument);
+			}
+		}).trigger("change");
+	});
 </script>
+</head>
+<body>
+	<div>
+		<h1>QUDT1.1 Unit vs DBpedia-ja</h1>
+		<div id="contents"></div>
+
+		<div style="margin: 2em;">
+			このページは RDF/XML に XSL スタイルシートを適用することで表示されています。 <br /> RDF/XML は以下のリソースを集約して作成されています。
+			<ul>
+				<li><a href="http://qudt.org/1.1/vocab/unit">QUDT 1.1 Ontology - Unit</a> , licensed under <a
+					href="https://creativecommons.org/licenses/by-sa/3.0/us/">CC BY-SA 3.0 US</a></li>
+				<li>Query result from <a href="http://dbpedia.org/snorql">DBpedia SPARQL Endpoint</a> , licensed under <a
+					href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<form>
+		<select>
+			<option value="style_by_type.xsl">group by specific type</option>
+			<option value="style.xsl">all</option>
+		</select>
+	</form>
+
+</body>
+</html>

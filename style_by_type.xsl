@@ -3,6 +3,30 @@
 	xmlns:qudt="http://qudt.org/schema/qudt#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#"
 	xmlns:owl="http://www.w3.org/2002/07/owl#">
 	<xsl:template match="/">
+		<xsl:call-template name="table">
+			<xsl:with-param name="type" select="string('http://qudt.org/schema/qudt#LengthUnit')" />
+		</xsl:call-template>
+
+		<xsl:call-template name="table">
+			<xsl:with-param name="type" select="string('http://qudt.org/schema/qudt#MassUnit')" />
+		</xsl:call-template>
+
+		<xsl:call-template name="table">
+			<xsl:with-param name="type" select="string('http://qudt.org/schema/qudt#AreaUnit')" />
+		</xsl:call-template>
+
+		<xsl:call-template name="table">
+			<xsl:with-param name="type" select="string('http://qudt.org/schema/qudt#VolumeUnit')" />
+		</xsl:call-template>
+
+	</xsl:template>
+
+	<xsl:template name="table">
+		<xsl:param name="type" />
+		<h2>
+			Class :
+			<xsl:value-of select="$type" />
+		</h2>
 		<table class="pure-table pure-table-striped">
 			<thead>
 				<tr>
@@ -12,14 +36,17 @@
 					<th>rel</th>
 					<th>DBpedia</th>
 					<th>DBpedia-ja</th>
+					<th>types</th>
 				</tr>
 			</thead>
 			<tbody>
-				<xsl:apply-templates select="/rdf:RDF/rdf:Description[rdf:type and rdfs:label]" />
+				<xsl:apply-templates select="/rdf:RDF/rdf:Description[rdf:type/@rdf:resource=$type]" />
 			</tbody>
 		</table>
 
+
 	</xsl:template>
+
 	<xsl:template match="rdf:Description">
 		<xsl:variable name="a" select="*[contains(namespace-uri(.),'skos')]" />
 		<xsl:variable name="b" select="$a/@rdf:resource" />
@@ -63,6 +90,13 @@
 						<xsl:value-of select="$c/rdfs:label" />
 					</a>
 				</xsl:if>
+			</td>
+			<td>
+				<xsl:for-each select="rdf:type/@rdf:resource">
+					<a class="type" href="{string(.)}">
+						<xsl:value-of select="substring-after(string(.),'#')" />
+					</a>
+				</xsl:for-each>
 			</td>
 		</tr>
 	</xsl:template>
