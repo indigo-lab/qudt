@@ -41,6 +41,7 @@ form {
 	width: auto;
 	height: auto;
 	display: block;
+	text-align: right;
 }
 
 a.type {

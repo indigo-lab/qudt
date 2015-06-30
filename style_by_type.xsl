@@ -19,6 +19,10 @@
 			<xsl:with-param name="type" select="string('http://qudt.org/schema/qudt#VolumeUnit')" />
 		</xsl:call-template>
 
+		<xsl:call-template name="table">
+			<xsl:with-param name="type" select="string('http://qudt.org/schema/qudt#TimeUnit')" />
+		</xsl:call-template>
+
 	</xsl:template>
 
 	<xsl:template name="table">
